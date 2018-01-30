@@ -9,6 +9,7 @@ tag_repo() {
     git push origin $2
     popd
     rm -rf repo
+    popd
 }
 
 if [[ -n "$1" ]]; then
