@@ -1,0 +1,22 @@
+#!/bin/bash
+
+tag_repo() {
+    pushd /tmp
+    rm -rf repo
+    git clone --depth=1 $1 repo
+    pushd repo
+    git tag -a -m "$2" $2
+    git push origin $2
+    popd
+    rm -rf repo
+}
+
+if [[ -n "$1" ]]; then
+    tag_repo git@github.com:leapp-to/snactor $1
+    tag_repo git@github.com:leapp-to/leapp-go $1
+    tag_repo git@github.com:leapp-to/leapp-actors $1
+    tag_repo git@github.com:leapp-to/leappctl $1
+    tag_repo git@github.com:leapp-to/leapp $1
+else
+    echo Missing tag name
+fi
